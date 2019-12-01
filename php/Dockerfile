@@ -10,13 +10,6 @@ RUN apt-get update && apt-get install -y \
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-
-# install composer
-#RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&\
-#  php composer-setup.php &&\
-#  php -r "unlink('composer-setup.php');" &&\
-#  mv composer.phar /usr/local/bin/composer
-
 COPY php.ini /usr/local/etc/php/
 
 # install exment
@@ -27,10 +20,17 @@ RUN wget https://exment.net/downloads/ja/exment.zip&&\
   unzip exment.zip &&\
   rm exment.zip 
 
-#RUN chmod 777 -R /var/www/exment/storage &&\
-#  chmod 777 -R /var/www/exment/bootstrap/cache
+RUN chown -R www-data:www-data exment &&\
+  chmod 755 -R /var/www/exment/storage &&\
+  chmod 755 -R /var/www/exment/bootstrap/cache
 
-RUN chmod 777 -R /var/www/exment
+#RUN chmod 777 -R /var/www/exment/storage &&\
+#  chmod 777 -R /var/www/exment/bootstrap/cache && \
+#  chmod 777 -R /var/www/exment/resources &&\
+#  chmod 777 -R /var/www/exment/public/   && \
+#  chmod 777 .env
+
+#RUN chmod 777 -R /var/www/exment
 
 
 #RUN wget https://github.com/exceedone/exment/archive/v${EXMENT_VERSION}.tar.gz&&\

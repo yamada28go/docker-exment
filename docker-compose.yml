@@ -39,9 +39,11 @@ services:
 # volumes を定義する
 volumes:
   # volume の名前を指定
+  # Exmentのインストールパス
   www-data:
     # Compose の外ですでに作成済みの volume を指定する場合は ture を設定する。
     # そうすると、 docker-compose up 時に Compose は volume を作成しようとしません。
     # かつ、指定した volume が存在しないとエラーを raise します。
     #external: true
+  # mysql dbのインストールパス
   mysql-data:

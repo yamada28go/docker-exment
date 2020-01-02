@@ -1,7 +1,7 @@
 FROM php:7.2-fpm
 
 # Exmentバージョンを設定する
-ENV EXMENT_VERSION 3.0.7
+ENV EXMENT_VERSION 3.0.13
 
 # install php-ext
 RUN apt-get update && apt-get install -y \
@@ -18,22 +18,15 @@ COPY php.ini /usr/local/etc/php/
 WORKDIR /var/www
 RUN apt-get update && apt-get install -y wget
 
-RUN wget https://exment.net/downloads/ja/exment.zip&&\
-  unzip exment.zip &&\
-  rm exment.zip 
+# install exment
+RUN composer create-project "laravel/laravel=5.6.*" exment &&\
+  cd exment &&\
+  composer require exceedone/exment:${EXMENT_VERSION} &&\
+  php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
 
+# 権限を指定する
 RUN chown -R www-data:www-data exment &&\
   chmod 755 -R /var/www/exment/storage &&\
   chmod 755 -R /var/www/exment/bootstrap/cache
 
-# 本来は、以下でバージョン固定して実現できるハズ
-#RUN wget https://github.com/exceedone/exment/archive/v${EXMENT_VERSION}.tar.gz&&\
-#  tar xvfz v${EXMENT_VERSION}.tar.gz  &&\
-#  mv exment-${EXMENT_VERSION}/ exment && \
-#  rm v${EXMENT_VERSION}.tar.gz
-
-#RUN git clone https://github.com/exceedone/exment.git\
-#  cd exment &&\
-#  git checkout master && \
-#  git checkout v${EXMENT_VERSION} && 
 

@@ -29,3 +29,4 @@ RUN chown -R www-data:www-data exment &&\
   chmod 755 -R /var/www/exment/storage &&\
   chmod 755 -R /var/www/exment/bootstrap/cache
 
+

@@ -28,3 +28,4 @@ RUN composer create-project "laravel/laravel=5.6.*" exment &&\
 RUN chown -R www-data:www-data exment &&\
   chmod 755 -R /var/www/exment/storage &&\
   chmod 755 -R /var/www/exment/bootstrap/cache
+

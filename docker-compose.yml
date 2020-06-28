@@ -11,13 +11,13 @@ services:
       - php
 
   php:
-    image: yamada28go/docker-exment:version-3.0.13
+    image: yamada28go/docker-exment:version-3.3.2
     volumes:
       - www-data:/var/www
     depends_on:
       - db
     environment: 
-      EXMENT_VERSION: 3.0.13
+      EXMENT_VERSION: 3.3.2
 
   db:
     image: mysql:5.7

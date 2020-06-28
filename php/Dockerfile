@@ -1,7 +1,7 @@
 FROM php:7.2-fpm
 
 # Exmentバージョンを設定する
-ENV EXMENT_VERSION 3.0.13
+ENV EXMENT_VERSION 3.3.2
 
 # install php-ext
 RUN apt-get update && apt-get install -y \

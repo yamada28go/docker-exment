@@ -29,12 +29,12 @@ services:
       MYSQL_USER: exment_user
       MYSQL_PASSWORD: secret
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    ports:
-      - 8888:80
-    depends_on:
-      - db
+#  phpmyadmin:
+#    image: phpmyadmin/phpmyadmin:latest
+#    ports:
+#      - 8888:80
+#    depends_on:
+#      - db
 
 # volumes を定義する
 volumes:
@@ -44,6 +44,7 @@ volumes:
     # Compose の外ですでに作成済みの volume を指定する場合は ture を設定する。
     # そうすると、 docker-compose up 時に Compose は volume を作成しようとしません。
     # かつ、指定した volume が存在しないとエラーを raise します。
-    #external: true
+    # external: true
   # mysql dbのインストールパス
   mysql-data:
+  # external: true
